@@ -29,7 +29,7 @@ extern "C"
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32g0xx_hal.h"
 
     /* Private includes ----------------------------------------------------------*/
     /* USER CODE BEGIN Includes */
@@ -59,10 +59,6 @@ extern "C"
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BUTTON_Pin GPIO_PIN_0
-#define BUTTON_GPIO_Port GPIOA
-#define LED_Pin GPIO_PIN_15
-#define LED_GPIO_Port GPIOD
     /* USER CODE BEGIN Private defines */
 
     /* USER CODE END Private defines */

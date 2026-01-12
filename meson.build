@@ -1,15 +1,15 @@
 project('firmware', ['c', 'cpp'], version : files('VERSION'), meson_version: '>=1.4.0')
 
 ## STM32 platform vars
-stm32_family = 'STM32F4xx'
-stm32_model  = 'STM32F407xx'
-stm32_fpu    = 'fpv4-sp-d16'
+stm32_family = 'STM32G0xx'
+stm32_model  = 'STM32G031xx'
+stm32_fpu    = ''
 
 ## STM32 sources and headers
 # This allows checking if file exists - throws if not
 # I could also implement this where used, but since it throws here, looks better?
-startupfile = files('CubeMX/startup_stm32f407xx.s')[0]
-linkfile = files('CubeMX/STM32F407VGTx_FLASH.ld')[0]
+startupfile = files('CubeMX/startup_stm32g031xx.s')[0]
+linkfile = files('CubeMX/STM32G031K8TX_FLASH.ld')[0]
 
 # Default (usually STM32 core directories)
 stm32cube_incdirs = []

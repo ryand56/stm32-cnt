@@ -38,28 +38,28 @@ BUILD_DIR = build
 C_SOURCES =  \
 ../Core/Src/main.c \
 ../Core/Src/gpio.c \
-../Core/Src/stm32f4xx_it.c \
-../Core/Src/stm32f4xx_hal_msp.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-../Core/Src/system_stm32f4xx.c  
+../Core/Src/stm32g0xx_it.c \
+../Core/Src/stm32g0xx_hal_msp.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_tim.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_tim_ex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc_ex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ramfunc.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_gpio.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma_ex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr_ex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_cortex.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal.c \
+../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_exti.c \
+../Core/Src/system_stm32g0xx.c  
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32f407xx.s
+startup_stm32g031xx.s
 
 
 #######################################
@@ -86,16 +86,13 @@ BIN = $(CP) -O binary -S
 # CFLAGS
 #######################################
 # cpu
-CPU = -mcpu=cortex-m4
+CPU = -mcpu=cortex-m0plus
 
 # fpu
-FPU = -mfpu=fpv4-sp-d16
+# FPU = -mfpu=fpv4-sp-d16
 
 # float-abi
-FLOAT-ABI = -mfloat-abi=hard
-
-# mcu
-MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
+# FLOAT-ABI = -mfloat-abi=hard
 
 # macros for gcc
 # AS defines
@@ -104,7 +101,7 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32F407xx
+-DSTM32G031xx
 
 
 # AS includes
@@ -120,9 +117,9 @@ C_INCLUDES =  \
 
 
 # compile gcc flags
-ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+ASFLAGS = $(CPU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+CFLAGS = $(CPU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -137,7 +134,7 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32F407VGTx_FLASH.ld
+LDSCRIPT = STM32G031K8Tx_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 

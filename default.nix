@@ -19,8 +19,8 @@ stdenv.mkDerivation rec {
   dontPatchELF = true;
 
   # Firmware/device info
-  device = "STM32F407VG";
-  binary = "${pname}${buildtype}-${version}-.bin";
+  device = "STM32G031K8";
+  binary = "${pname}-${buildtype}-${version}.bin";
   executable = "${pname}-${buildtype}-${version}.elf";
 
   # cmake
@@ -34,13 +34,12 @@ stdenv.mkDerivation rec {
   mesonBuildType = "${lib.strings.toLower buildtype}";
   mesonFlags = [
     "--cross-file=gcc-arm-none-eabi.meson"
-    "--cross-file=stm32f4.meson"
+    "--cross-file=stm32g0.meson"
     "--buildtype=${buildtype}"
   ];
 
   patchPhase = ''
-    substituteInPlace glob.sh \
-      --replace '/usr/bin/env bash' ${bash}/bin/bash
+    patchShebangs glob.sh
   '';
 
   # "save" outputs

@@ -1,5 +1,4 @@
 #include "main.h"
-#include <Project/SWO.h>
 #include <Project/projectMain.h>
 #include <array>
 #include <cstdio>
@@ -36,16 +35,11 @@ private:
 
 void projectMain()
 {
-    Led led(GPIOD, GPIO_PIN_15);
-
-    // Newer C++ features
-    constexpr auto arr = std::to_array({1, 2, 3, 4, 5});
-    auto view = std::span(arr);
+    Led led(GPIOC, GPIO_PIN_6);
 
     while (true)
     {
         led.toggle();
-        SWO_PrintDefault("Hello, world!\n");
-        HAL_Delay(1000);
+        HAL_Delay(2000);
     }
 }

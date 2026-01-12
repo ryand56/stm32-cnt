@@ -2,9 +2,9 @@
 ############################### Native Makefile ###############################
 
 PROJECT_NAME ?= firmware
-BUILD_DIR ?= build
-FIRMWARE := $(BUILD_DIR)/$(PROJECT_NAME).bin
 BUILD_TYPE ?= debug
+BUILD_DIR ?= build
+FIRMWARE := $(BUILD_DIR)/$(PROJECT_NAME)-$(BUILD_TYPE)-1.0.bin
 PLATFORM = $(if $(OS),$(OS),$(shell uname -s))
 
 ifeq ($(PLATFORM),Windows_NT)
@@ -50,7 +50,7 @@ format-linux: $(addsuffix .format-linux,$(FORMAT_LINUX))
 	$(if $(filter $(PLATFORM),Linux),dos2unix -q $<,)
 
 # Device specific!
-DEVICE ?= STM32F407VG
+DEVICE ?= STM32G031K8
 
 flash-st: build
 	st-flash --reset write $(FIRMWARE) 0x08000000

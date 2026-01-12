@@ -25,6 +25,7 @@
 !meson.build
 !gcc-arm-none-eabi.meson
 !stm32f4.meson
+!stm32g0.meson
 !glob.sh
 
 # EXAMPLE

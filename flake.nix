@@ -48,7 +48,7 @@
           pkgs.writeShellApplication {
             name = "flash-stlink-${fw.buildtype}";
             text =
-              "st-flash --reset write ${fw}/bin/${fw.binary}.bin 0x08000000";
+              "st-flash --reset write ${fw}/bin/${fw.binary} 0x08000000";
             runtimeInputs = [ pkgs.stlink ];
           };
 
@@ -89,7 +89,7 @@
           fi
 
           JLinkGDBServerCLExe \
-            -device STM32F407VG \
+            -device STM32G031K8 \
             -if SWD \
             -speed 4000 \
             -port 2331 > jlink.log 2>&1 &

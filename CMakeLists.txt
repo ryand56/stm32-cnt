@@ -24,16 +24,15 @@ set(EXECUTABLE ${CMAKE_PROJECT_NAME})
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Set microcontroller information
-set(MCU_FAMILY STM32F4xx)
-set(MCU_MODEL STM32F407xx)
+set(MCU_FAMILY STM32G0xx)
+set(MCU_MODEL STM32G031xx)
 set(CPU_PARAMETERS
-    -mcpu=cortex-m4
+    -mcpu=cortex-m0plus
     -mthumb
-    -mfpu=fpv4-sp-d16
-    -mfloat-abi=hard)
+    -mfloat-abi=soft)
 
-set(STARTUP_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/startup_stm32f407xx.s)
-set(MCU_LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/STM32F407VGTx_FLASH.ld)
+set(STARTUP_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/startup_stm32g031xx.s)
+set(MCU_LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/STM32G031K8TX_FLASH.ld)
 
 ###############################################################################
 enable_language(C CXX ASM)
